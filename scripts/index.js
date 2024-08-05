@@ -1,11 +1,12 @@
-import { createUser, checkCredentialsAndLogin } from "./functions.js";
+import { createUser, checkCredentialsAndLogin, redirectToLoginPage, redirectToRegisterPage } from "./functions.js";
 
-if (location.href.includes('/') || location.pathname == '/') {
+if (location.pathname == '/' || location.href.includes('/index')) {
     document.querySelector("#reg-form").addEventListener("submit", createUser);
+    document.querySelector("#login-page").addEventListener('click', redirectToLoginPage);
 }
 
 
-if (location.href.includes('/login') || location.pathname == '/login') {
-    document.querySelector('#login').addEventListener('submit', checkCredentialsAndLogin);
-    
+if (location.pathname == '/login.html' || location.href.includes('/login')) {
+    document.querySelector('#login-form').addEventListener('submit', checkCredentialsAndLogin);
+    document.querySelector('#register-page').addEventListener('click', redirectToRegisterPage);
 }
