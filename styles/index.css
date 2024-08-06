@@ -5,3 +5,8 @@
     gap: 10px;
     width: 20%;
 }
+
+.missingField
+{
+    box-shadow: red 1px 0 4px;
+}
