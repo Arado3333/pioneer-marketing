@@ -1,6 +1,8 @@
-import { User } from "./user.model.js";
+import { User } from "../models/user.model.js";
+import { Campaign } from "../models/campaign.model.js";
 import { vars } from "./vars.js";
 
+//for *register* page
 export function createUser(event) {
   event.preventDefault(); //do not refresh the page
 
@@ -72,6 +74,7 @@ export function redirectToRegisterPage() {
   location.pathname = "/index.html";
 }
 
+//for *login* page
 export function checkCredentialsAndLogin(event) {
   event.preventDefault();
 
@@ -133,6 +136,7 @@ export function checkCredentialsAndLogin(event) {
   }
 }
 
+//for *dashboard* page
 export function greetUser() {
   let activeUser = JSON.parse(sessionStorage.getItem('activeUser'));
 
@@ -150,4 +154,47 @@ export function checkForCampaigns() {
 
   document.querySelector('#active-campaigns').innerHTML = html;
     
+}
+
+export function showForm(event) {
+  document.querySelector('#form-wrapper').style = "display: flex";
+  let button = event.target;
+}
+
+export function saveData(event) {
+  event.preventDefault();
+
+  let name = document.querySelector('#campaign-name').value;
+  let title = document.querySelector('#title').value;
+  let textContent = document.querySelector('#content').value;
+
+  let imgUrl = String(processImage(event));
+
+  let campaign = new Campaign(vars.activeCampaigns, name, title, textContent, imgUrl);
+  console.log(campaign);
+  vars.activeCampaigns++;
+  
+}
+
+export function processImage(event) {
+  
+  const fileElement = document.querySelector('#pic-upload');
+  const fileReader = new FileReader();
+  let url;
+
+  fileReader.readAsDataURL(fileElement.files[0]);
+  
+  fileReader.addEventListener('load', () => {
+    url = fileReader.result;
+    const resImg = new Image(250, 250);
+    resImg.src = url;
+    let imgDiv = document.querySelector('#imgPreview');
+    imgDiv.appendChild(resImg);
+
+    if (event.type != "change") {
+      console.log("not change event!");
+      console.log(url);
+    }
+  });
+  
 }

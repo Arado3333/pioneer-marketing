@@ -5,24 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
+    <link rel="stylesheet" href="styles/dashboard.css">
     <script type="module" src="./scripts/index.js"></script>
+    
 </head>
 
-<body>
+<body dir="ltr" id="body">
     <h1 id="heading">Welcome to your dashboard,</h1>
     <h2>What would you like to do?</h2>
-    <div>
-        <button></button>
-        <button></button>
-        <button></button>
+    <div class="btn-wrapper">
+        <button id="banner-edit">Banner Editor</button>
+        <button id="landing-edit">Landing Page Editor</button>
+        <button id="log-out">Log Out</button>
     </div>
 
     <div id="active-campaigns">
+    
 
         <ol id="camp-list">
-
+            <!-- Inject anchor tags with JavaScript -->
         </ol>
     </div>
+   <button id="start-new-camp">Get Started!</button>
+
+   <div id="form-wrapper">
+    <form id="new-camp">
+        <label for="campaign-name">Campaign Name:</label>
+        <input type="text" id="campaign-name">
+        <label for="title">Title</label>
+        <input type="text" id="title">
+        <label for="content">Page Text Content</label>
+        <textarea maxlength="150" form="new-camp" type="text" id="content" rows="5" name="content">
+Tell us about your exciting campaign!
+        </textarea>
+        <label for="pic-upload">Upload Picture</label>
+        <div id="imgPreview"></div>
+        <input type="file" name="upload" id="pic-upload">
+        <input type="submit" name="submit" id="finish">
+    </form>
+</div>
+   
 </body>
 
 </html>
