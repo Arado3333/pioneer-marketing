@@ -20,3 +20,43 @@ button {
     display: none;
     height: 50%;
 }
+
+#active-campaigns {
+    margin-bottom: 2%;
+    padding: 2%;
+    width: 70%;
+}
+
+.collapsible {
+    transition: 0.5s;
+    background-color: #790A0A;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    height: 50%;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    margin-top: 5%;
+  }
+
+.title {
+    margin-left: 1%;
+}
+
+  .active, .collapsible:hover {
+    transition: 0.5s;
+    background-color: #900c0c;
+  }
+
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    max-height: 0;
+    min-height: 0;
+    transition: max-height 0.2s ease-out;
+  }

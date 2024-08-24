@@ -74,6 +74,18 @@ export function redirectToRegisterPage() {
   location.pathname = "/index.html";
 }
 
+export function logOut() {
+  let answer = confirm("Are you sure you want to exit?");
+
+  if (answer == true && !sessionStorage.getItem('activeUser')) {
+    redirectToLoginPage();
+  }
+  else if(sessionStorage.getItem('activeUser')) {
+    sessionStorage.removeItem('activeUser');
+    redirectToLoginPage();
+  }
+}
+
 //for *login* page
 export function checkCredentialsAndLogin(event) {
   event.preventDefault();
@@ -140,20 +152,76 @@ export function checkCredentialsAndLogin(event) {
 export function greetUser() {
   let activeUser = JSON.parse(sessionStorage.getItem('activeUser'));
 
+  if (!activeUser) {
+    redirectToLoginPage();
+  }
+
   document.querySelector('#heading').innerHTML += ` ${activeUser.fname} ${activeUser.lname}!`;
 }
 
 export function checkForCampaigns() {
   let html = ``;
-  if (vars.activeCampaigns == 0) {
+  let loggedUser = JSON.parse(sessionStorage.getItem('activeUser'));
+  let campaigns = JSON.parse(localStorage.getItem(`campaigns_${loggedUser.userId}`));
+  vars.campCount = campaigns ? JSON.parse(localStorage.getItem(`campaigns_${loggedUser.userId}`)).length : 0;
+
+  if (vars.campCount == 0 || !localStorage.getItem(`campaigns_${loggedUser.userId}`)) {
     html += `<h3>looks like it's empty here.. Start your new campaign!</h3>`;
   }
   else {
-    html += `<h3>Your active campaigns</h3>`
+    html += `<h3>Your active campaigns</h3>`;
+
+    let listElem = document.querySelector('#camp-list');
+    // console.log("ol => " + listElem.innerHTML);
+
+    let buttonElem = listElem.querySelector('.collapsible');
+
+    let content = listElem.querySelector('.content');
+    // console.log("content p inside ol => " + content.innerHTML);
+
+    for (let i = 0; i <campaigns.length; i++) 
+    {
+      //listElem השמה של ערכים בתוך האלמנטים של 
+      buttonElem.innerHTML = `<span class="title">${campaigns[i].name}</span>`;
+      let image = makeImage(campaigns[i].image);
+      console.log(image);
+      content.innerHTML = `<p>
+      Title: ${campaigns[i].title}<br>
+      Content: ${campaigns[i].textContent}<br><br>
+      Image:
+      </p>`;
+      content.appendChild(image);
+
+      //listElem הוספה של 
+      html += listElem.innerHTML;
+    }
   }
 
-  document.querySelector('#active-campaigns').innerHTML = html;
+  console.log(html); //הדפסה של הרשימה של הקמפיינים
+  document.querySelector('#active-campaigns').innerHTML = html; //הוספה של התוצר לדף עצמו
     
+}
+
+export function toggleCamp() {
+  let coll = document.querySelectorAll(".collapsible");
+  let i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      let content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  }
 }
 
 export function showForm(event) {
@@ -161,40 +229,58 @@ export function showForm(event) {
   let button = event.target;
 }
 
+let imgUrl = ``;
+
 export function saveData(event) {
   event.preventDefault();
+  debugger;
 
+  let userId = JSON.parse(sessionStorage.getItem('activeUser')).userId;
   let name = document.querySelector('#campaign-name').value;
   let title = document.querySelector('#title').value;
   let textContent = document.querySelector('#content').value;
 
-  let imgUrl = String(processImage(event));
-
-  let campaign = new Campaign(vars.activeCampaigns, name, title, textContent, imgUrl);
-  console.log(campaign);
-  vars.activeCampaigns++;
+  let campaign = new Campaign(vars.campCount, name, title, textContent, imgUrl); //משתנה מקומי לאובייקט הקמפיין
+  let campArr = JSON.parse(localStorage.getItem(`campaigns_${userId}`)) || new Array(); //משתנה מקומי למערך הקמפיינים
   
+  console.log(vars.campCount);
+
+  if (campArr.length > 0)
+  {
+    vars.campCount = campArr.length;
+  }
+
+  campArr[vars.campCount] = campaign;
+  vars.campCount++;
+
+  vars.campaigns = campArr;
+  console.log(campaign);
+
+  localStorage.setItem(`campaigns_${userId}`, JSON.stringify(vars.campaigns));
+  
+}
+
+function makeImage(url) {
+  let image = new Image(250);
+  image.src = url;
+  return image;
 }
 
 export function processImage(event) {
   
-  const fileElement = document.querySelector('#pic-upload');
+  const fileElement = event.target;
   const fileReader = new FileReader();
-  let url;
 
   fileReader.readAsDataURL(fileElement.files[0]);
   
   fileReader.addEventListener('load', () => {
-    url = fileReader.result;
+    imgUrl = fileReader.result;
     const resImg = new Image(250, 250);
-    resImg.src = url;
+    resImg.src = imgUrl;
     let imgDiv = document.querySelector('#imgPreview');
     imgDiv.appendChild(resImg);
-
-    if (event.type != "change") {
-      console.log("not change event!");
-      console.log(url);
-    }
   });
   
 }
+
+
