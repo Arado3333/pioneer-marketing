@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/banner-editor.css">
+    <script type="module" src="./scripts/index.js"></script>
+    <title>Banner Editor</title>
+</head>
+<body>
+    <h1 id="editor-title">Welcome to the Banner Editor, </h1>
+    <form id="banner-create">
+        <label for="banner-heading">Heading</label>
+        <input type="text" name="heading" id="banner-heading">
+        <label for="banner-subheading">Sub Heading</label>
+        <input type="text" name="subHeading" id="banner-subheading">
+        <label for="cta-btn-text">Call To Action Text</label>
+        <input type="text" name="cta" id="cta-btn-text">
+        <label for="pic-upload">Background Picture (optional)</label>
+        <input type="file" name="upload" id="pic-upload">
+        <label for="background-color">Background Color (optional if background image is <strong>not</strong> set)</label>
+        <input type="color" name="bg-color" id="background-color">
+        <input type="submit" value="Create Banner">
+    </form>
+</body>
+</html>

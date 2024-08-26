@@ -1,0 +1,6 @@
+#banner-create {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 20px;
+}

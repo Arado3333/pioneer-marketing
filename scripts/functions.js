@@ -287,4 +287,9 @@ export function processImage(event) {
   
 }
 
+export function loadBannerEditor() 
+{
+  location.pathname =  "/banner_editor.html";
+}
+
 
