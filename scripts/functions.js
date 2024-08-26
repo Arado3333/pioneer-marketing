@@ -256,9 +256,12 @@ export function saveData(event) {
   vars.campaigns = campArr;
   console.log(campaign);
   console.log("userId: " + userId);
-  
+
   localStorage.setItem(`campaigns_${userId}`, JSON.stringify(vars.campaigns));
-  
+  document.querySelector('#camp-upload-stat').innerHTML = "Campaign created successfully";
+  setTimeout(() => {
+    location.reload(true);
+  }, 2000);
 }
 
 function makeImage(url) {
