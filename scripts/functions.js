@@ -255,7 +255,8 @@ export function saveData(event) {
 
   vars.campaigns = campArr;
   console.log(campaign);
-
+  console.log("userId: " + userId);
+  
   localStorage.setItem(`campaigns_${userId}`, JSON.stringify(vars.campaigns));
   
 }
