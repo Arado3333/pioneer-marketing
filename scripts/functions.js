@@ -66,6 +66,10 @@ export function createUser(event) {
   
 }
 
+export function redirectToDashboard() {
+  location.pathname = "/dashboard.html";
+}
+
 export function redirectToLoginPage() {
   location.pathname = "/login.html";
 }
@@ -80,7 +84,7 @@ export function logOut() {
   if (answer == true && !sessionStorage.getItem('activeUser')) {
     redirectToLoginPage();
   }
-  else if(sessionStorage.getItem('activeUser')) {
+  else if(answer == true && sessionStorage.getItem('activeUser')) {
     sessionStorage.removeItem('activeUser');
     redirectToLoginPage();
   }

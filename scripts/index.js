@@ -1,5 +1,5 @@
-import { createUser, checkCredentialsAndLogin, redirectToLoginPage, redirectToRegisterPage, greetUser, checkForCampaigns, showForm, saveData, processImage, toggleCamp, logOut, loadBannerEditor} from "./functions.js";
-import { greetUserEditor, blockColorField, createBanner} from "./functions_banner_editor.js";
+import { createUser, checkCredentialsAndLogin, redirectToLoginPage, redirectToRegisterPage, greetUser, checkForCampaigns, showForm, saveData, processImage, toggleCamp, logOut, loadBannerEditor, redirectToDashboard} from "./functions.js";
+import { greetUserEditor, blockColorField, createBanner, processBannerImage} from "./functions_banner_editor.js";
 
 
 if (location.pathname == '/' || location.href.includes('/index')) {
@@ -26,6 +26,11 @@ else if (location.pathname == '/dashboard.html' || location.href.includes('/dash
 
 if (location.pathname == '/banner_editor.html' || location.href.includes('/banner_editor')) {
     greetUserEditor();
-    document.querySelector('#pic-upload').addEventListener('change', blockColorField);
+    document.querySelector('#pic-upload').addEventListener('change', () => {
+        processBannerImage(event);
+        blockColorField();
+    });
     document.querySelector('#banner-create').addEventListener('submit', createBanner);
+    document.querySelector('#dashboard').addEventListener('click', redirectToDashboard);
+    document.querySelector('#log-out').addEventListener('click', logOut);
 }

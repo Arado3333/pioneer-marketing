@@ -1,4 +1,4 @@
-class Banner {
+export class Banner {
     heading;
     subHeading;
     ctaText;

@@ -9,6 +9,11 @@
 </head>
 <body>
     <h1 id="editor-title">Welcome to the Banner Editor, </h1>
+    <div class="btn-wrapper">
+        <button id="dashboard">My Dashboard</button>
+        <button id="landing-edit">Landing Page Editor</button>
+        <button id="log-out">Log Out</button>
+    </div>
     <form id="banner-create">
         <label for="banner-heading">Heading</label>
         <input type="text" name="heading" id="banner-heading">
@@ -18,9 +23,12 @@
         <input type="text" name="cta" id="cta-btn-text">
         <label for="pic-upload">Background Picture (optional)</label>
         <input type="file" name="upload" id="pic-upload">
+        <div id="imgPreview"></div>
         <label for="background-color">Background Color (optional if background image is <strong>not</strong> set)</label>
         <input type="color" name="bg-color" id="background-color">
         <input type="submit" value="Create Banner">
+        
+        <div id="banner-preview" height="250"></div>
     </form>
 </body>
 </html>

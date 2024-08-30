@@ -1,6 +1,17 @@
 #banner-create {
     display: flex;
     flex-direction: column;
+    margin-top: 3%;
     width: 30%;
     gap: 20px;
+}
+
+button {
+    color: #fff;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border: solid black 2px;
+    border-radius: 5px;
+    background-color: #790A0A;
+    height: 30px;
 }
