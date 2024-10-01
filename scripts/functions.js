@@ -183,7 +183,7 @@ export function checkForCampaigns() {
     let content = listElem.querySelector('.content');
     // console.log("content p inside ol => " + content.innerHTML);
 
-    for (let i = 0; i <campaigns.length; i++) 
+    for (let i = 0; i < campaigns.length; i++) 
     {
       //listElem השמה של ערכים בתוך האלמנטים של 
       buttonElem.innerHTML = `<span class="title">${campaigns[i].name}</span>`;
@@ -196,6 +196,7 @@ export function checkForCampaigns() {
       </p>`;
       content.appendChild(image);
 
+      content.innerHTML += `<div class="del-button"><button class='${campaigns[i].name}'>Delete Campaign</button></div>`;
       //listElem הוספה של 
       html += listElem.innerHTML;
     }
@@ -237,7 +238,6 @@ let imgUrl = ``;
 
 export function saveData(event) {
   event.preventDefault();
-  debugger;
 
   let userId = JSON.parse(sessionStorage.getItem('activeUser')).userId;
   let name = document.querySelector('#campaign-name').value;
@@ -294,6 +294,29 @@ export function processImage(event) {
 export function loadBannerEditor() 
 {
   location.pathname =  "/banner_editor.html";
+}
+
+export function wantToDelete(event) 
+{
+  const eventClassName = event.target.classList[0];
+  let delConfirm = confirm(`Delete campaign: ${eventClassName}`);
+  let campaigns = JSON.parse(localStorage.getItem(`campaigns_${vars.loggedUser.userId}`));
+
+  if (delConfirm == true) {
+    for (let i = 0; i < campaigns.length; i++)
+    {
+      if (campaigns[i].name == eventClassName) {
+        campaigns.splice(i, 1);
+        localStorage.setItem(`campaigns_${vars.loggedUser.userId}`, JSON.stringify(campaigns));
+      }
+    }
+    document.querySelector('#camp-delete-stat').innerHTML = `Campaign has been deleted successfully`;
+    setTimeout(() => {
+      location.reload(true);
+    }, 2000);
+  }
+
+  
 }
 
 

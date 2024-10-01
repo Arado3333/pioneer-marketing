@@ -15,3 +15,15 @@ button {
     background-color: #790A0A;
     height: 30px;
 }
+
+#banner-preview {
+    text-align: center;
+    position: relative;
+    width: 500px;
+    height: 250px;
+}
+
+#hd-inp-wrap, #sub-inp-wrap, #cta-inp-wrap {
+    display: flex;
+    gap: 3%;
+}

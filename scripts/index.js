@@ -1,5 +1,5 @@
-import { createUser, checkCredentialsAndLogin, redirectToLoginPage, redirectToRegisterPage, greetUser, checkForCampaigns, showForm, saveData, processImage, toggleCamp, logOut, loadBannerEditor, redirectToDashboard} from "./functions.js";
-import { greetUserEditor, blockColorField, createBanner, processBannerImage} from "./functions_banner_editor.js";
+import { createUser, checkCredentialsAndLogin, redirectToLoginPage, redirectToRegisterPage, greetUser, checkForCampaigns, showForm, saveData, processImage, toggleCamp, logOut, loadBannerEditor, redirectToDashboard, wantToDelete} from "./functions.js";
+import { greetUserEditor, blockColorField, createBanner, processBannerImage, processBannerBackground, addTextToBanner, paintText} from "./functions_banner_editor.js";
 
 
 if (location.pathname == '/' || location.href.includes('/index')) {
@@ -22,6 +22,10 @@ else if (location.pathname == '/dashboard.html' || location.href.includes('/dash
     document.querySelector('#new-camp').addEventListener('submit', saveData);
     document.querySelector('#pic-upload').addEventListener('change', processImage);
     document.querySelector('#banner-edit').addEventListener('click', loadBannerEditor);
+    const delButtons = document.querySelectorAll('.del-button');
+    delButtons.forEach((button) => {
+        button.addEventListener('click', wantToDelete);
+    });
 }
 
 if (location.pathname == '/banner_editor.html' || location.href.includes('/banner_editor')) {
@@ -30,6 +34,13 @@ if (location.pathname == '/banner_editor.html' || location.href.includes('/banne
         processBannerImage(event);
         blockColorField();
     });
+    document.querySelectorAll('.text').forEach((text) => {
+        text.addEventListener('input', addTextToBanner);
+    })
+    document.querySelectorAll('div>input+input').forEach((text) => {
+        text.addEventListener('input', paintText);
+    });
+    document.querySelector('#background-color').addEventListener('input', processBannerBackground);
     document.querySelector('#banner-create').addEventListener('submit', createBanner);
     document.querySelector('#dashboard').addEventListener('click', redirectToDashboard);
     document.querySelector('#log-out').addEventListener('click', logOut);

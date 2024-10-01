@@ -1,3 +1,7 @@
+body {
+  box-sizing: border-box;
+}
+
 button {
     color: #fff;
     box-sizing: border-box;
@@ -52,11 +56,17 @@ button {
   }
 
   .content {
-    padding: 0 18px;
+    position: relative;
+    padding: 20px 18px;
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
     max-height: 0;
     min-height: 0;
     transition: max-height 0.2s ease-out;
+  }
+
+  .del-button {
+    position: relative;
+    margin-top: 2%;
   }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script type="module" src="./scripts/index.js"></script>
     <title>Banner Editor</title>
 </head>
+
 <body>
     <h1 id="editor-title">Welcome to the Banner Editor, </h1>
     <div class="btn-wrapper">
@@ -16,19 +18,37 @@
     </div>
     <form id="banner-create">
         <label for="banner-heading">Heading</label>
-        <input type="text" name="heading" id="banner-heading">
+        <div id="hd-inp-wrap">
+            <input class="text" type="text" name="heading" id="banner-heading">
+            <input type="color" value="#790A0A" name="heading" id="heading-color">
+        </div>
+
         <label for="banner-subheading">Sub Heading</label>
-        <input type="text" name="subHeading" id="banner-subheading">
+        <div id="sub-inp-wrap">
+            <input class="text" type="text" name="subHeading" id="banner-subheading">
+            <input type="color" value="#790A0A" name="subHeading" id="sHeading-color">
+        </div>
+
         <label for="cta-btn-text">Call To Action Text</label>
-        <input type="text" name="cta" id="cta-btn-text">
+        <div id="cta-inp-wrap">
+            <input class="text" type="text" name="cta" id="cta-btn-text">
+            <input type="color" value="#790A0A" name="cta" id="cta-color">
+        </div>
+
         <label for="pic-upload">Background Picture (optional)</label>
         <input type="file" name="upload" id="pic-upload">
         <div id="imgPreview"></div>
-        <label for="background-color">Background Color (optional if background image is <strong>not</strong> set)</label>
-        <input type="color" name="bg-color" id="background-color">
+        <label for="background-color">Background Color (optional if background image is <strong>not</strong>
+            set)</label>
+        <input type="color" value="#790A0A" name="bg-color" id="background-color">
         <input type="submit" value="Create Banner">
-        
-        <div id="banner-preview" height="250"></div>
+
+        <div id="banner-preview" height="250">
+            <h2 id="bHeading"></h2>
+            <h3 id="bSubheading"></h3>
+            <strong id="bCta"></strong>
+        </div>
     </form>
 </body>
+
 </html>
