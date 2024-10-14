@@ -10,45 +10,81 @@
 </head>
 
 <body>
-    <h1 id="editor-title">Welcome to the Banner Editor, </h1>
-    <div class="btn-wrapper">
-        <button id="dashboard">My Dashboard</button>
-        <button id="landing-edit">Landing Page Editor</button>
-        <button id="log-out">Log Out</button>
-    </div>
-    <form id="banner-create">
-        <label for="banner-heading">Heading</label>
-        <div id="hd-inp-wrap">
-            <input class="text" type="text" name="heading" id="banner-heading">
-            <input type="color" value="#790A0A" name="heading" id="heading-color">
-        </div>
+    <main id="banner-edit-grid">
 
-        <label for="banner-subheading">Sub Heading</label>
-        <div id="sub-inp-wrap">
-            <input class="text" type="text" name="subHeading" id="banner-subheading">
-            <input type="color" value="#790A0A" name="subHeading" id="sHeading-color">
-        </div>
+        <nav id="navbar">
+            <div id="link-wrapper">
+                <div class="navlink"><button id="back-dashboard">Dashboard</button></div>
+                <!-- <div class="navlink"><button id="landing-edit">Landing Page Editor</button></div> -->
+                <div class="navlink"><button id="landing-page">Landing Page</button></div>
+                <div class="navlink"><button id="log-out">Log Out</button></div>
+            </div>
+        </nav>
 
-        <label for="cta-btn-text">Call To Action Text</label>
-        <div id="cta-inp-wrap">
-            <input class="text" type="text" name="cta" id="cta-btn-text">
-            <input type="color" value="#790A0A" name="cta" id="cta-color">
-        </div>
 
-        <label for="pic-upload">Background Picture (optional)</label>
-        <input type="file" name="upload" id="pic-upload">
-        <div id="imgPreview"></div>
-        <label for="background-color">Background Color (optional if background image is <strong>not</strong>
-            set)</label>
-        <input type="color" value="#790A0A" name="bg-color" id="background-color">
-        <input type="submit" value="Create Banner">
+        <div id="editor-wrapper">
+            <h1 id="editor-title">Welcome to the Banner Editor, </h1>
 
-        <div id="banner-preview" height="250">
-            <h2 id="bHeading"></h2>
-            <h3 id="bSubheading"></h3>
-            <strong id="bCta"></strong>
+            <form id="banner-create">
+
+                <label for="banner-width">Banner Width</label>
+                <input type="number" value="500" name="banner-width" id="banner-width" required>
+
+                <label for="banner-height">Banner Height</label>
+                <input type="number" value="250" name="banner-height" id="banner-height" required>
+
+                <label for="banner-heading">Heading</label>
+                <div id="hd-inp-wrap">
+                    <input class="text" type="text" name="heading" id="banner-heading" required>
+                    <input type="color" value="#790A0A" name="heading" id="heading-color" required>
+                </div>
+
+                <label for="banner-subheading">Sub Heading</label>
+                <div id="sub-inp-wrap">
+                    <input class="text" type="text" name="subHeading" id="banner-subheading" required>
+                    <input type="color" value="#790A0A" name="subHeading" id="sHeading-color" required>
+                </div>
+
+                <label for="cta-btn-text">Call To Action Text</label>
+                <div id="cta-inp-wrap">
+                    <input class="text" type="text" name="cta" id="cta-btn-text" required>
+                    <input type="color" value="#790A0A" name="cta" id="cta-color" required>
+                </div>
+
+                <label for="text-font">Font</label>
+                <div id="font-inp-wrapper">
+                    <select name="text-font" id="text-font">
+                        <option value="Alef">Alef</option>
+                        <option value="Anta">Anta</option>
+                        <option value="Open Sans">Open Sans</option>
+                        <option value="Roboto">Roboto</option>
+                        <option value="Poppins">Poppins</option>
+                    </select>
+                </div>
+
+                <label for="pic-upload">Picture (optional)</label>
+                <input type="file" name="upload" id="pic-upload">
+                <div id="imgPreview"></div>
+
+                <label for="background-color">Background Color</label>
+                <input type="color" value="#790A0A" name="bg-color" id="background-color" required>
+                <input id="submit-banner" type="submit" value="Create Banner">
+
+
+                
+
+                <h3 id="banner-creation-stat"></h3>
+            </form>
+
+            <h2>Banner Preview:</h2>
+            <div id="banner-preview" style="width: 500px; height: 250px;">
+                <h2 id="bHeading"></h2>
+                <h3 id="bSubheading"></h3>
+                <strong id="bCta"></strong>
+                <div id="img-prev"></div>
+            </div>
         </div>
-    </form>
+    </main>
 </body>
 
 </html>

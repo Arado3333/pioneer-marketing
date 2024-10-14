@@ -10,16 +10,49 @@
 </head>
 
 <body>
-    <form action="#" id="reg-form">
-        <input type="text" placeholder="Email" id="email">
-        <input type="text" name="fname" id="fname" placeholder="First Name">
-        <input type="text" name="lname" id="lname" placeholder="Last Name">
-        <input type="password" placeholder="Password" id="password">
-        <button type="submit" id="register">Register</button>
-        <button type="button" id="login-page"><a href="./login.html"></a>Login</button>
-    </form>
-    <div id="reg-status"><strong id="reg-message"></strong></div>
-    
+    <main id="reg-grid">
+        <nav id="header-color"></nav>
+        <h1 id="reg-heading">Welcome to our campaign management tool</h1>
+        <h2 id="reg-subheading">Register</h2>
+
+        <div id="reg-form-wrapper">
+            <form action="#" id="reg-form" method="post">
+
+                <div class="inp-wrapper">
+                    <label for="email">Email:</label>
+                    <input type="text" placeholder="Email" id="email">
+                </div>
+
+                <div class="inp-wrapper">
+                    <label for="fname">First name:</label>
+                    <input type="text" name="fname" id="fname" placeholder="First Name">
+                </div>
+
+                <div class="inp-wrapper">
+                    <label for="lname">Last name:</label>
+                    <input type="text" name="lname" id="lname" placeholder="Last Name">
+                </div>
+
+                <div class="inp-wrapper">
+                    <label for="password">Password:</label>
+                    <input type="password" placeholder="Password" id="password">
+                </div>
+
+                <button type="submit" id="register">Register</button>
+            </form>
+        </div>
+        <div id="reg-status"><strong id="reg-message"></strong></div>
+        <h3 id="reg-alrdy">Already registerd? <a id="login-page" href="./login.html">Login</a></h3>
+
+        <footer id="reg-footer">
+            <div class="contact-details">
+                <h3 id="contact-label">Contact Us</h3>
+                <h3>Email: arado3333@gmail.com</h3>
+                <h3>Mobile: (+972) 52-xxx-xxxx</h3>
+            </div>
+            <p>(C) Design and build by Arad David</p>
+        </footer>
+    </main>
 </body>
 
 </html>

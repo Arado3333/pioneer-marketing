@@ -1,6 +1,56 @@
 import { User } from "../models/user.model.js";
 import { Campaign } from "../models/campaign.model.js";
-import { vars } from "./vars.js";
+import { vars, useVars } from "./vars.js";
+
+export function logEvent(event) {
+  console.log(event.target.tagName.toLowerCase());
+
+  const element = event.target;
+
+  makeEditable(element);
+
+  //display video source
+  // const videoElemSrc = event.target.querySelector('source').src;
+}
+
+function makeEditable(element) {
+  if (element.tagName.toLowerCase() == 'a' || element.tagName.toLowerCase() == 'p' || element.tagName.toLowerCase() == 'h1' || element.tagName.toLowerCase() == 'h2' || element.tagName.toLowerCase() == 'h3' || element.tagName.toLowerCase() == 'span') {
+    element.contentEditable = 'true';
+  }
+
+  else if (element.tagName.toLowerCase() == 'img' || element.tagName.toLowerCase() == 'video') {
+    makeImageUpload(element);
+  }
+
+
+  element.addEventListener('input', saveUserEdits);
+}
+
+function makeImageUpload(element) {
+  let changePic = prompt("Enter image address");
+  
+  if (changePic == "");
+  else if (changePic == null);
+  else {
+    element.src = changePic;
+  }
+
+
+}
+
+function saveUserEdits() {
+  const updatedHTML = document.querySelector('#landing-page-container').innerHTML;
+  localStorage.setItem('userEdits', JSON.stringify(updatedHTML));
+}
+
+export function checkEdits() {
+  
+  const prevEdits = JSON.parse(localStorage.getItem('userEdits'));
+
+  if (prevEdits != null) {
+    document.querySelector('#landing-page-container').innerHTML = prevEdits;
+  }
+}
 
 //for *register* page
 export function createUser(event) {
@@ -76,6 +126,10 @@ export function redirectToLoginPage() {
 
 export function redirectToRegisterPage() {
   location.pathname = "/index.html";
+}
+
+export function openLandingPage() {
+  location.pathname = `/landing_page.html`;
 }
 
 export function logOut() {
@@ -163,6 +217,45 @@ export function greetUser() {
   document.querySelector('#heading').innerHTML += ` ${activeUser.fname} ${activeUser.lname}!`;
 }
 
+export function deleteBanner(event) {
+  const answer = confirm("Delete this banner?");
+  console.log(event.target.id);
+
+  if (answer == true) {
+    let bannerArr = JSON.parse(localStorage.getItem(`banners_${vars.loggedUser.userId}`));
+    bannerArr.splice(event.target.id, 1);
+    localStorage.setItem(`banners_${vars.loggedUser.userId}`, JSON.stringify(bannerArr));
+    document.querySelector(`#banner-del-stat`).innerHTML = `Banner deleted successfully. Refreshing the page`;
+
+    setTimeout(redirectToDashboard, 2000);
+  }
+}
+
+export function checkForBanners() {
+  let html = ``;
+  const userId = vars.loggedUser.userId;
+  const bannersArr = JSON.parse(localStorage.getItem(`banners_${userId}`));
+  const bannersPreviewElement = document.querySelector('#banners-wrapper');
+
+  console.log(bannersArr);
+
+  if (bannersArr) {
+  
+  for (let i = 0; i < bannersArr.length; i++)
+  {
+    html += 
+    `<div class="banner-card" style="background-color: ${bannersArr[i].bgColor}; height: ${bannersArr[i].height}px; width: ${bannersArr[i].width}px; font-family: ${bannersArr[i].font}">
+      <img width="100%" src="${bannersArr[i].bgPicture}">
+      <h2>${bannersArr[i].heading}</h2>
+      <h3>${bannersArr[i].subHeading}</h3>
+      <strong>${bannersArr[i].ctaText}</strong>
+    </div>`;
+  }
+  }
+  console.log(html);
+  bannersPreviewElement.innerHTML = html;
+}
+
 export function checkForCampaigns() {
   let html = ``;
   let loggedUser = JSON.parse(sessionStorage.getItem('activeUser'));
@@ -183,13 +276,18 @@ export function checkForCampaigns() {
     let content = listElem.querySelector('.content');
     // console.log("content p inside ol => " + content.innerHTML);
 
+    
+    
     for (let i = 0; i < campaigns.length; i++) 
     {
+      html += `<div class="coll-wrapper">`;
       //listElem השמה של ערכים בתוך האלמנטים של 
       buttonElem.innerHTML = `<span class="title">${campaigns[i].name}</span>`;
       let image = makeImage(campaigns[i].image);
       console.log(image);
-      content.innerHTML = `<p>
+      content.innerHTML = `<p style="line-height: 1.8;">
+      Campaign Start Date: ${campaigns[i].startDate}<br>
+      Campaign End Date: ${campaigns[i].endDate}<br>
       Title: ${campaigns[i].title}<br>
       Content: ${campaigns[i].textContent}<br><br>
       Image:
@@ -199,7 +297,11 @@ export function checkForCampaigns() {
       content.innerHTML += `<div class="del-button"><button class='${campaigns[i].name}'>Delete Campaign</button></div>`;
       //listElem הוספה של 
       html += listElem.innerHTML;
+
+      html += `</div>`;
     }
+    
+    
   }
 
   console.log(html); //הדפסה של הרשימה של הקמפיינים
@@ -230,7 +332,7 @@ export function toggleCamp() {
 }
 
 export function showForm(event) {
-  document.querySelector('#form-wrapper').style = "display: flex";
+  document.querySelector('#form-wrapper').style = `display: flex; justify-content: center; `;
   let button = event.target;
 }
 
@@ -240,11 +342,13 @@ export function saveData(event) {
   event.preventDefault();
 
   let userId = JSON.parse(sessionStorage.getItem('activeUser')).userId;
+  let startDate = document.querySelector('#campaign-date-start').value;
+  let endDate = document.querySelector('#campaign-date-end').value;
   let name = document.querySelector('#campaign-name').value;
   let title = document.querySelector('#title').value;
   let textContent = document.querySelector('#content').value;
 
-  let campaign = new Campaign(vars.campCount, name, title, textContent, imgUrl); //משתנה מקומי לאובייקט הקמפיין
+  let campaign = new Campaign(vars.campCount, name, title, textContent, imgUrl, startDate, endDate); //משתנה מקומי לאובייקט הקמפיין
   let campArr = JSON.parse(localStorage.getItem(`campaigns_${userId}`)) || new Array(); //משתנה מקומי למערך הקמפיינים
   
   console.log(vars.campCount);
@@ -315,8 +419,10 @@ export function wantToDelete(event)
       location.reload(true);
     }, 2000);
   }
+}
 
-  
+export function loadLandingEditor() {
+  location.pathname = "/landing_editor.html";
 }
 
 

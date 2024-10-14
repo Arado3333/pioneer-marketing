@@ -1,5 +1,28 @@
+@import url('./vars.css');
+
 body {
+  margin: var(--reset-body-margin);
   box-sizing: border-box;
+}
+
+button, textarea {
+  font-family: var(--prmry-text-font);
+}
+
+#finish {
+  margin-top: 4%;
+  color: #000000;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  border: solid black 1px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  height: 30px;
+}
+
+#dashboard-grid {
+  text-align: center;
+  font-family: var(--prmry-text-font);
 }
 
 button {
@@ -14,21 +37,34 @@ button {
 
 #new-camp {
     margin-top: 10%;
-    width: 30%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
+#new-camp>label {
+  color: white;
+}
+
 #form-wrapper {
-    display: none;
-    height: 50%;
+  background: #790a0aeb;
+  margin-top: 5%;
+  width: 60%;
+  margin-left: 20%;
+  text-align: left;
+  display: none;
+  height: 50%;
+  box-shadow: 0 2px 5px;
 }
 
 #active-campaigns {
-    margin-bottom: 2%;
-    padding: 2%;
-    width: 70%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2%;
+  width: 60%;
+  padding: 0 20%;
 }
 
 .collapsible {
@@ -43,7 +79,6 @@ button {
     text-align: left;
     outline: none;
     font-size: 15px;
-    margin-top: 5%;
   }
 
 .title {
@@ -56,6 +91,7 @@ button {
   }
 
   .content {
+    text-align: left;
     position: relative;
     padding: 20px 18px;
     display: none;
@@ -66,7 +102,89 @@ button {
     transition: max-height 0.2s ease-out;
   }
 
+  .coll-wrapper {
+    border-radius: 5px;
+    margin-top: 7%;
+    box-shadow: 2px 2px 6px;
+  }
+
   .del-button {
     position: relative;
     margin-top: 2%;
   }
+
+
+  #banners-wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .banner-card {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10%;
+    box-shadow: 0 0 7px;
+  }
+
+  #link-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 10%;
+  }
+
+  #navbar {
+    display: flex;
+    align-items: center;
+    background: #790A0A;
+    height: 80px;
+  }
+
+  .navlink>button {
+    background: #cd3131;
+    border: none;
+  }
+
+  #active-campaigns>h3 {
+    margin: 0;
+  }
+
+#banners-sect {
+  display: flex;
+  flex-direction: column;
+}
+
+#banner-sect-heading {
+  text-align: center;
+}
+
+@media screen and (max-width: 425px) {
+  
+  #form-wrapper {
+    width: 80%;
+    margin-left: 10%;
+    box-shadow: 0 2px 5px;
+  }
+
+  #new-camp {
+    width: 55%;
+  }
+
+  #active-campaigns {
+    width: 90%;
+    padding-left: 4%;
+  }
+
+  #dashboard-grid {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  #banners-sect {
+    width: 90%;
+    padding-left: 5%;
+  }
+}

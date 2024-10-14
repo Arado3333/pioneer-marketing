@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/landing-page.css">
+    <script type="module" src="./scripts/index.js"></script>
+    <title>Pioneer DJ - Landing Page</title>
+</head>
+
+<body>
+    <div class="back-to-dash">
+        <img id="back-arrow" src="./assets/icons/weui--back-filled.svg" alt="back">
+        <button id="back">Dashboard</button>
+    </div>
+    
+    <main id="landing-page-container">
+
+
+        <nav id="navbar">
+            <div class="navlink" id="logo"><img src="./assets/pioneer_logo_white.png" width="250" alt="Pioneer Logo">
+            </div>
+            <div class="navlink" id="about"><a href="#about-sect">About Us</a></div>
+            <div class="navlink" id="latest-gear"><a href="#latest-gear-sect">Our latest Gear</a> </div>
+            <div class="navlink" id="software"><a href="#rekord-sect">Our Software</a></div>
+            <div class="navlink" id="pricing"><a href="#pricing-sect">Pricing</a></div>
+            <div class="navlink" id="faq"><a href="#faq-sect">FAQ</a></div>
+            <div class="navlink" id="newsletter"><a href="#newsletter-sect">Newsletter</a></div>
+        </nav>
+
+        <nav id="burger-nav">
+            <div class="burger-logo" id="logo"><img src="./assets/pioneer_logo_white.png" width="250"
+                    alt="Pioneer Logo">
+            </div>
+            <div class="ham-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <div class="off-screen-menu">
+            <ul>
+                <li><a href="#about-sect">About Us</a></li>
+                <li><a href="#latest-gear-sect">Our latest Gear</a></li>
+                <li><a href="#rekord-sect">Our Software</a></li>
+                <li><a href="#pricing-sect">Pricing</a></li>
+                <li><a href="#faq-sect">FAQ</a></li>
+                <li><a href="#newsletter-sect">Newsletter</a></li>
+            </ul>
+        </div>
+
+
+        <video autoplay loop muted>Some pioneer video
+            <source src="./assets/videos/Dj1.mp4" type="video/mp4">
+        </video>
+
+        <section id="about-sect">
+
+            <div class="h1-p-wrapper">
+                <h2>Hi! we are Pioneer DJ</h2>
+                <p>We offer the best quality DJ gear and software out there, ensuring unforgettable quality for your
+                    events</p>
+            </div>
+
+            <div class="h1-p-wrapper">
+                <h2>Music: Redefined</h2>
+                <p>Play like never before with our new gear designed just for you</p>
+                <p>Get the best out of your music!</p>
+            </div>
+
+            <div id="vid-wrapper">
+                <video autoplay muted loop>
+                    <source src="./assets/videos/Dj2.mp4">
+                </video>
+            </div>
+        </section>
+
+
+        <h2 class="sect-2-heading">Our Latest Gear</h2>
+        <section id="latest-gear-sect">
+            <div class="pic-wrapper" id="prod1">
+                <picture class="product-pic">
+                    <img width="100%" src="./assets/sx3.png" alt="DDJ-SX3">
+                </picture>
+                <h3 class="pic-desc">DDJ-SX3</h3>
+            </div>
+
+            <div class="pic-wrapper" id="prod2">
+                <picture class="product-pic">
+                    <img width="100%" src="./assets/rev1.png" alt="DDJ-REV1">
+                </picture>
+                <h3 class="pic-desc">DDJ-REV1</h3>
+            </div>
+
+            <div class="pic-wrapper" id="prod3">
+                <picture class="product-pic">
+                    <img width="50%" src="./assets/XDJ-XZ_prm_frontangle_191011.webp" alt="XDJ-XZ">
+                </picture>
+                <br>
+                <h3 class="pic-desc">XDJ-XZ</h3>
+            </div>
+        </section>
+
+        <section id="rekord-sect">
+            <h3>Master the sound with</h3>
+            <picture id="rekord-logo">
+                <img width="40%" src="./assets/rekordbox-Logo.webp" alt="Rekordbox-Logo">
+            </picture>
+            <picture id="rekord-gui">
+                <img width="60%" src="./assets/rekordbox-gui.jpeg" alt="Rekordbox-UI">
+            </picture>
+            <p>with your own curated playlists</p>
+        </section>
+
+        <section id="pricing-sect">
+            <h2>Pricing</h2>
+
+            <div id="plan-wrapper">
+
+                <div class="plan-div">
+                    <h2>Starter Groove Plan</h2>
+                    <p>Just getting into DJing? The Starter Groove Plan is all you need to kick off your mixing journey.
+                    </p>
+                    <p>It’s got all the basics to get you spinning tracks and dropping beats without getting too
+                        complicated.</p>
+                    <h3>9.99$/mo</h3>
+                </div>
+
+                <div class="plan-div">
+                    <h2>Pro Beat Plan</h2>
+                    <p>Ready to level up? The Pro Beat Plan is for DJs who are ready to bring some serious heat.</p>
+                    <p>With more decks, more effects, and more control, you’ll be rocking parties in no time.</p>
+                    <h3>14.99$/mo</h3>
+                </div>
+
+                <div class="plan-div">
+                    <h2>Ultimate DJ Master Plan</h2>
+                    <p>If you’re serious about DJing and want the best of everything, this plan is your golden ticket.
+                    </p>
+                    <p>From live performances to studio-level recordings, it’s all here.</p>
+                    <h3>29.99$/mo</h3>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="testimoni-sect">
+
+            <div class="testimoni-wrapper">
+                <img width="125" src="./assets/faces/face1.jpeg" alt="face1">
+
+                <div class="text-wrapper">
+                    <h3 class="testimonial">“Couldn’t believe how big Pioneer DJ’s equipment will improve my sound. It’s
+                        just amazing!”</h3>
+                    <p class="testi-author">Roy, Professional DJ</p>
+                </div>
+            </div>
+
+            <div class="testimoni-wrapper">
+                <img width="125" src="./assets/faces/face2.jpeg" alt="face2">
+
+                <div class="text-wrapper">
+                    <h3 class="testimonial">“No matter where I am - easy plug & play, for successful evening without
+                        technical issues!”</h3>
+                    <p class="testi-author">Maya, Wedding DJ</p>
+                </div>
+            </div>
+
+            <div class="testimoni-wrapper">
+                <img width="125" src="./assets/faces/face3.jpeg" alt="face3">
+
+                <div class="text-wrapper">
+                    <h3 class="testimonial">“Quality and easy-to-carry equipment, and amazing software - Just what I
+                        needed!”</h3>
+                    <p class="testi-author">Jack, DJ at Dance Bars</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="faq-sect">
+            <h2 id="faq-heading">FAQ</h2>
+            <div id="quests-wrapper">
+                <h3>Q: What makes Pioneer DJ equipment stand out from other brands?</h3>
+                <p>A: Pioneer DJ gear is known for its top-tier build quality, combining lightweight but durable
+                    materials perfect for events, gigs, and weddings. Our equipment ensures reliability and high
+                    performance for DJs at all levels.</p>
+
+                <h3>Q: How does your software enhance the DJ experience with Pioneer hardware?</h3>
+                <p>A: Our software is 100% optimized for Pioneer hardware, offering seamless integration and advanced
+                    features that elevate your DJ performance. You’ll experience smooth compatibility, from setup to
+                    live mixing.</p>
+
+                <h3>Q: Do you offer discounts for students?</h3>
+                <p>A: Yes, we offer discounts for students
+                    Special offer for the month only and only for students - 10% discount on our products!</p>
+
+                <h3>Q: What kind of customer support do you provide?</h3>
+                <p>A: We offer dedicated support for both hardware and software. Our team is available to assist with
+                    setup, troubleshooting, and updates to ensure your experience is always smooth and worry-free.</p>
+            </div>
+        </section>
+
+        <section id="newsletter-sect">
+            <div id="h2-news">
+                <h2 id="offer-heading">Interested in special offers and latest news?</h2>
+                <h2>Join our newsletter!</h2>
+            </div>
+
+            <div class="frm-wrapper">
+                <form id="subscription">
+                    <input type="email" placeholder="Your email here">
+                    <button type="submit">I'm in!</button>
+                </form>
+            </div>
+        </section>
+
+        <footer id="footer-sect">
+
+            <section id="footer-grid">
+                <div class="footer-logo-wrapper">
+                    <img width="250" src="./assets/pioneer_logo_white.png" alt="Pioneer Logo">
+                </div>
+
+                <div id="link-box">
+                    <div class="link-wrapper">
+                        <div class="footlink" id="foot-about"> <a href="#about-sect">About Us</a> </div>
+                        <div class="footlink" id="foot-latest-gear"> <a href="#latest-gear-sect">Our latest Gear</a>
+                        </div>
+                        <div class="footlink" id="foot-software"> <a href="#rekord-sect">Our Software</a> </div>
+                    </div>
+
+                    <div class="link-wrapper">
+                        <div class="footlink" id="foot-pricing"> <a href="#pricing-sect">Pricing</a> </div>
+                        <div class="footlink" id="foot-faq"> <a href="#faq-sect">FAQ</a> </div>
+                        <div class="footlink" id="foot-newsletter"> <a href="#newsletter-sect">Newsletter</a> </div>
+                    </div>
+                </div>
+
+                <h2 class="follow-us">Follow us on socials</h2>
+
+                <div class="icon-wrapper">
+                    <img src="./assets/icons/ic--baseline-facebook.svg" alt="Facebook">
+                    <img src="./assets/icons/ant-design--instagram-filled.svg" alt="Instagram">
+                    <img src="./assets/icons/ri--tiktok-fill.svg" alt="Tiktok">
+                    <img src="./assets/icons/mdi--youtube.svg" alt="YouTube">
+                </div>
+            </section>
+
+            <div id="credit">
+                <p>Pioneer DJ 2024 (C) Design and build by Arad David</p>
+            </div>
+
+        </footer>
+    </main>
+
+</body>
+
+</html>

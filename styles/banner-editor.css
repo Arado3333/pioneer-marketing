@@ -1,9 +1,34 @@
+@import url('./vars.css');
+
+body {
+    margin: 0;
+}
+
+#banner-edit-grid {
+    font-family: var(--prmry-text-font);
+}
+
 #banner-create {
+    box-shadow: 0.03rem 0.1rem 0.5rem;
+    padding: 10%;
+    padding-bottom: 2%;
     display: flex;
     flex-direction: column;
     margin-top: 3%;
+    margin-bottom: 3%;
     width: 30%;
     gap: 20px;
+}
+
+#submit-banner {
+    margin-top: 4%;
+    color: #fff;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border: solid black 2px;
+    border-radius: 5px;
+    background-color: #790A0A;
+    height: 30px;
 }
 
 button {
@@ -17,13 +42,77 @@ button {
 }
 
 #banner-preview {
+    overflow: hidden;
+    margin-top: 5%;
+    align-self: center  ;
+    width: 100%;
     text-align: center;
     position: relative;
-    width: 500px;
-    height: 250px;
+    margin-bottom: 3%;
+}
+
+
+#banner-preview>img {
+    width: 100%;
 }
 
 #hd-inp-wrap, #sub-inp-wrap, #cta-inp-wrap {
     display: flex;
     gap: 3%;
+}
+
+.alef {
+    font-family: var(--frst-banner-font);
+}
+
+.anta {
+    font-family: var(--scnd-banner-font);
+}
+
+.open {
+    font-family: var(--thrd-banner-font);
+}
+
+.roboto {
+    font-family: var(--prmry-text-font);
+}
+
+.poppins {
+    font-family: var(--frth-banner-font);
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    background: #790A0A;
+    height: 80px;
+}
+
+.navlink>button {
+    background: #cd3131;
+    border: none;
+}
+
+#link-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 10%;
+}
+
+#editor-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+@media screen and (max-width: 425px) {
+    #banner-edit-grid {
+        overflow: hidden;
+        text-align: center;
+    }
+
+    #banner-create {
+        width: 60%;
+    }
 }
