@@ -6,8 +6,5 @@ export const vars = {
   campCount: 0,
 };
 
-export const useVars = {
-  bannerArr: []
-}; 
 
 

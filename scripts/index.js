@@ -1,5 +1,5 @@
-import { createUser, checkCredentialsAndLogin, redirectToLoginPage, redirectToRegisterPage, greetUser, checkForCampaigns, showForm, saveData, processImage, toggleCamp, logOut, loadBannerEditor, redirectToDashboard, wantToDelete, loadLandingEditor, checkForBanners, openLandingPage, logEvent, checkEdits, deleteBanner} from "./functions.js";
-import { greetUserEditor, blockColorField, createBanner, processBannerImage, processBannerBackground, addTextToBanner, paintText, resizeBanner, changeFont} from "./functions_banner_editor.js";
+import { createUser, checkCredentialsAndLogin, redirectToLoginPage, redirectToRegisterPage, greetUser, checkForCampaigns, showForm, saveData, processImage, toggleCamp, logOut, loadBannerEditor, redirectToDashboard, wantToDelete, checkForBanners, openLandingPage, makeEditable, checkEdits, deleteBanner} from "./functions.js";
+import { greetUserEditor, createBanner, processBannerImage, processBannerBackground, addTextToBanner, paintText, resizeBanner, changeFont} from "./functions_banner_editor.js";
 
 
 if (location.pathname == '/index.html' || location.href.includes('/index')) {
@@ -10,7 +10,7 @@ if (location.pathname == '/index.html' || location.href.includes('/index')) {
 
 if (location.pathname == '/login.html' || location.href.includes('/login')) {
     document.querySelector('#login-form').addEventListener('submit', checkCredentialsAndLogin);
-    document.querySelector('#register-page').addEventListener('click', redirectToRegisterPage);
+    document.querySelector('#reg-page').addEventListener('click', redirectToRegisterPage);
 }
 
 else if (location.pathname == '/dashboard.html' || location.href.includes('/dashboard')) {
@@ -61,18 +61,9 @@ if (location.pathname == '/banner_editor.html' || location.href.includes('/banne
 
 }
 
-if (location.pathname == '/landing_editor.html' || location.href.includes('/landing_editor')) {
-    greetUser();
-
-    document.querySelector('#back-dashboard').addEventListener('click', redirectToDashboard);
-    document.querySelector('#banner-edit').addEventListener('click', loadBannerEditor);
-    document.querySelector('#landing-page').addEventListener('click', openLandingPage);
-    document.querySelector('#log-out').addEventListener('click', logOut);
-}
-
 if (location.pathname == '/landing_page.html' || location.href.includes('/landing_page')) {
     checkEdits();
-    document.addEventListener('dblclick', logEvent);
+    document.addEventListener('dblclick', makeEditable);
 
     document.querySelector('#back').addEventListener('click', redirectToDashboard);
 

@@ -1,15 +1,10 @@
 import { Banner } from "../models/banner.model.js";
 import { redirectToDashboard } from "./functions.js";
-import { vars, useVars } from "./vars.js";
+import { vars } from "./vars.js";
 
 export function greetUserEditor() {
     const activeUser = JSON.parse(sessionStorage.getItem('activeUser'));
     document.querySelector('#editor-title').innerHTML += `${activeUser.fname} ${activeUser.lname}!`;
-}
-
-export function blockColorField() {
-    let colorPicker = document.querySelector('#background-color');
-    colorPicker.disabled = true;
 }
 
 let imgUrl = ``;
@@ -25,8 +20,6 @@ export function createBanner(event) {
     const width = document.querySelector('#banner-width').value;
     const height = document.querySelector('#banner-height').value;
     const font = document.querySelector('#text-font').value;
-    
-    // console.log("heading: " + heading + " subheading: " + subHeading + " ctaText: " + ctaText + " color: " + color + " width: " + width + " height: " + height);
 
     let bannerArr = JSON.parse(localStorage.getItem(`banners_${vars.loggedUser.userId}`)) || [];
 

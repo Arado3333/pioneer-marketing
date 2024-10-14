@@ -1,19 +1,10 @@
 import { User } from "../models/user.model.js";
 import { Campaign } from "../models/campaign.model.js";
-import { vars, useVars } from "./vars.js";
+import { vars } from "./vars.js";
 
-export function logEvent(event) {
-  console.log(event.target.tagName.toLowerCase());
-
+export function makeEditable(event) {
   const element = event.target;
 
-  makeEditable(element);
-
-  //display video source
-  // const videoElemSrc = event.target.querySelector('source').src;
-}
-
-function makeEditable(element) {
   if (element.tagName.toLowerCase() == 'a' || element.tagName.toLowerCase() == 'p' || element.tagName.toLowerCase() == 'h1' || element.tagName.toLowerCase() == 'h2' || element.tagName.toLowerCase() == 'h3' || element.tagName.toLowerCase() == 'span') {
     element.contentEditable = 'true';
   }
@@ -21,7 +12,6 @@ function makeEditable(element) {
   else if (element.tagName.toLowerCase() == 'img' || element.tagName.toLowerCase() == 'video') {
     makeImageUpload(element);
   }
-
 
   element.addEventListener('input', saveUserEdits);
 }
@@ -34,8 +24,6 @@ function makeImageUpload(element) {
   else {
     element.src = changePic;
   }
-
-
 }
 
 function saveUserEdits() {
@@ -63,17 +51,22 @@ export function createUser(event) {
   let password = document.querySelector("#password").value;
   let localStorageUserArr;
 
-  if (email == "" || fname == "" || lname == "" || password == "") {
+  if (email == "" || fname == "" || lname == "" || password == "") 
+  {
     alert("Please fill all the fields");
     let inputs = document.querySelectorAll('input');
-    for (let i = 0; i < inputs.length; i++) {
+
+    for (let i = 0; i < inputs.length; i++) 
+    {
       if (inputs[i].value == "")
         inputs[i].classList.add('missingField');
       else 
         inputs[i].classList.remove('missingField');
     }
   } 
-  else if (!(email == "" || fname == "" || lname == "" || password == "")) {
+
+  else if (!(email == "" || fname == "" || lname == "" || password == "")) 
+  {
     //check for existing users in localStorage
     if (localStorage.getItem('users')) 
     {
@@ -92,7 +85,8 @@ export function createUser(event) {
         if ((localStorageUserArr[i].email != email && i == localStorageUserArr.length-1)) { //localStorageבדיקה האם האימייל שהוזן לא קיים עדיין ב
           vars.registeredUsers[vars.userCount++] = user;
           localStorage.setItem(`users`, JSON.stringify(vars.registeredUsers));
-          document.querySelector('#reg-message').innerHTML = `User for ${user.fname} ${user.lname} has been created successfully!`;
+          document.querySelector('#reg-message').innerHTML = `User for ${user.fname} ${user.lname} has been created successfully! redirecting to Login page`;
+          setTimeout(redirectToLoginPage, 2000);
           break;
         }
         else if (localStorageUserArr[i].email == email){ //localStorageהצג הודעת למשתמש אם כבר קיים על ה
@@ -226,9 +220,8 @@ export function deleteBanner(event) {
     bannerArr.splice(event.target.id, 1);
     localStorage.setItem(`banners_${vars.loggedUser.userId}`, JSON.stringify(bannerArr));
     document.querySelector(`#banner-del-stat`).innerHTML = `Banner deleted successfully. Refreshing the page`;
-
-    setTimeout(redirectToDashboard, 2000);
   }
+  setTimeout(redirectToDashboard, 2000);
 }
 
 export function checkForBanners() {
@@ -419,10 +412,6 @@ export function wantToDelete(event)
       location.reload(true);
     }, 2000);
   }
-}
-
-export function loadLandingEditor() {
-  location.pathname = "/landing_editor.html";
 }
 
 
